@@ -15,12 +15,16 @@
 
   }
 
-// in root create **webpack.config.js** look to the file example in the code
+## in root create **webpack.config.js**
 
-// create **.browserslistrc** properties for witch browsers it your build should work
-// instal loader for HTML **npm install --save-dev html-loader**
-// instal loader for CSS **npm install --save-dev css-loader**
-// instal loader for CSS **npm install --save-dev style-loader**
-// instal loader for SCSS **npm install sass-loader sass --save-dev**
+look to the file example in the code
 
-// instal plugin for load CSS in separate file **npm install --save-dev mini-css-extract-plugin**
+- create `.browserslistrc` properties for witch browsers it your build should work
+- install HtmlWebpackPlugin `npm install --save-dev html-webpack-plugin`
+- install MiniCssExtractPlugin `npm install --save-dev mini-css-extract-plugin`
+- install loader for HTML `npm install --save-dev html-loader`
+- install loader for CSS `npm install --save-dev css-loader`
+- install loader for CSS `npm install --save-dev style-loader`
+- install loader for SCSS `npm install sass-loader sass --save-dev`
+- install plugin for load CSS in separate file `npm install --save-dev mini-css-extract-plugin`
+- install post Css loader `npm install --save-dev postcss-loader postcss` + `npm i postcss-preset-env -D`

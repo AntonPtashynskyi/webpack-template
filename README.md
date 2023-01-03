@@ -1,8 +1,10 @@
 ## root directory
 
-`npm init -y` = y - to skip all init properties
-`npm install webpack -D` = d - only for dev dependencies
-`npm install webpack-cli webpack-dev-server -D` = cli - for webpack command / server
+`npm init -y` - y - to skip all init properties
+
+`npm install webpack -D` - d - only for dev dependencies
+
+`npm install webpack-cli webpack-dev-server -D` - cli - for webpack command / server
 
 ## Scripts in **package.json**
 

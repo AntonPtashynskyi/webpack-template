@@ -13,8 +13,14 @@ module.exports = {
   mode,
   target,
   devtool,
-  mode: "development",
-  entry: path.resolve(__dirname, "src", "index.js"), // 1. directory from with we take the resources
+  // add devServer, "hot: true" for instance refresh (ex. styles)
+  devServer: {
+    port: 3030,
+    open: true,
+    hot: true,
+  },
+  // mode: "development",
+  entry: ["@babel/polyfill", path.resolve(__dirname, "src", "index.js")], // 1. directory from with we take the resources
   output: {
     // output where we put all files
     path: path.resolve(__dirname, "dist"),
@@ -37,22 +43,36 @@ module.exports = {
         loader: "html-loader", //use property indicates which loader should be used to do the transforming
       },
       {
-        test: /\.(c|sa|sc)ss$/i, // 6. (c|sa|s)ss mean the it may be css, sass scss
-        include: [path.resolve(__dirname, "src", "scss")],
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
         use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
           "css-loader",
-          {
-            // 7. add post css
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: [require("postcss-preset-env")],
-              },
-            },
-          },
+          // Compiles Sass to CSS
           "sass-loader",
         ],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+      {
+        test: /\.(woff|woff2|ttf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[name]ext",
+        },
       },
     ],
   },

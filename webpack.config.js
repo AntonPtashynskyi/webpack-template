@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // plugin for render HTML
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // plugin for load separate CSS
 const path = require("path");
+const loader = require("sass-loader");
 
 //3
 const mode = process.env.NODE_ENV || "development";
@@ -26,6 +27,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true, // clean every time
     filename: "[name].[contenthash].js", // 2. may be standard file name example "final.js" or "main.index.js"
+    assetModuleFilename: "assets/[name][hash][ext]", // add dir for assets of our project
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -73,6 +75,36 @@ module.exports = {
         generator: {
           filename: "fonts/[name]ext",
         },
+      },
+      {
+        // add Loader for images,
+        test: /\.(jpe?g|png|gif|svg|webp)$/i,
+        use: [
+          {
+            loader: "image-webpack-loader",
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75,
+              },
+            },
+          },
+        ],
+        type: "asset/resource",
       },
     ],
   },

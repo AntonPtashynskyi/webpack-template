@@ -3,3 +3,10 @@ body {
   color: #fff;
   font-family: "Montserrat";
 }
+.image {
+  width: 300px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(./imgs/cat.jpg);
+}

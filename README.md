@@ -57,3 +57,22 @@ add property "generator" allow add folder with name 'fonts' in dist directory.
 ````
 
 create file `_fonts.scss` where we adding `@font-face`
+
+## Add images
+
+in `webpack.config.js` to `module.exports = {  output: { assetsModuleFilename: "folderName/[name][ext]"} }`
+add property what ber pointing folder for all "assets"
+to modify [name] of file we may use `[hash]` or use both of them, for example it will be "cat3defr[hash]"
+
+- For properly load images in `js` files, need add to `module` => `rules` for img
+
+       `{
+          test: /\.(jpe?g|png|gif|svg|webp)$/i,
+          type: "asset/resource",
+        },`
+
+- For image optimization use package for webpack image optimization: `https://www.npmjs.com/package/image-webpack-loader`
+
+      For use it you shuold add propety to `module` => `rules`. already instaled loader.
+
+      `use: [{ loader: "image"}]`
